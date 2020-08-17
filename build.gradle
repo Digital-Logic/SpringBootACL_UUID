@@ -1,0 +1,100 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'net.digitallogic'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+def mapStructVersion = '1.3.1.Final'
+
+
+def props = new Properties();
+file("liquibase.properties").withInputStream({ props.load(it) })
+
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-acl'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'net.sf.ehcache:ehcache:2.10.6'
+	implementation 'org.springframework:spring-context-support'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+	implementation 'org.liquibase:liquibase-core'
+
+	compileOnly 'org.projectlombok:lombok'
+	compileOnly "org.mapstruct:mapstruct:${mapStructVersion}"
+
+	runtimeOnly 'mysql:mysql-connector-java'
+
+	runtimeOnly 'org.postgresql:postgresql'
+
+
+	annotationProcessor "org.mapstruct:mapstruct-processor:${mapStructVersion}"
+	annotationProcessor 'org.projectlombok:lombok'
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'org.assertj:assertj-core:3.16.1'
+
+//	testRuntimeOnly 'com.h2database:h2'
+	implementation 'com.h2database:h2'
+}
+
+processResources {
+	filesMatching('**/*.properties') {
+		expand(props)
+	}
+}
+
+task ("update", {
+	group = "liquibase"
+	doLast {
+		def stdout = new ByteArrayOutputStream()
+		exec {
+			workingDir "${projectDir}"
+			commandLine 'liquibase'
+			args 'update'
+			standardOutput(stdout)
+		}
+		println stdout
+	}
+})
+
+task ("status", {
+	group = 'liquibase'
+	doLast {
+		def stdout = new ByteArrayOutputStream()
+		exec {
+			workingDir "${projectDir}"
+			commandLine 'liquibase'
+			args 'status'
+			standardOutput(stdout)
+		}
+		println stdout
+	}
+})
+
+
+test {
+	useJUnitPlatform()
+}

@@ -1,0 +1,108 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.0.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd"
+                   logicalFilePath="path-ignored">
+
+    <changeSet author="lbrown (generated)" id="1596642939514-1">
+        <createTable tableName="authority_entity">
+            <column name="id" type="${uid.type}">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column defaultValueNumeric="1" name="optlock" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbrown (generated)" id="1596642939514-2">
+        <createTable tableName="role_entity">
+            <column name="id" type="${uid.type}">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column defaultValueNumeric="1" name="optlock" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbrown (generated)" id="1596642939514-3">
+        <createTable tableName="role_authorities">
+            <column name="role_id" type="${uid.type}">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="authority_id" type="${uid.type}">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbrown (generated)" id="1596642939514-4">
+        <createTable tableName="user_entity">
+            <column name="id" type="${uid.type}">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column defaultValueNumeric="1" name="optlock" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="account_enabled" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="account_expired" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="account_locked" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="credentials_expired" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="email" type="VARCHAR(120)">
+                <constraints nullable="false"
+                    unique="true"
+                />
+            </column>
+            <column name="encrypted_password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbrown (generated)" id="1596642939514-5">
+        <createTable tableName="user_roles">
+            <column name="user_id" type="${uid.type}">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="role_id" type="${uid.type}">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbrown (generated)" id="1596642939514-6">
+        <createIndex indexName="FKn8dif8lobyoe1juv6v5b1fag1" tableName="role_authorities">
+            <column name="authority_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lbrown (generated)" id="1596642939514-7">
+        <createIndex indexName="FKrhfovtciq1l558cw6udg0h0d3" tableName="user_roles">
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lbrown (generated)" id="1596642939514-8">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_roles" constraintName="FK55itppkw3i07do3h7qoclqd4k" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user_entity" validate="true"/>
+    </changeSet>
+    <changeSet author="lbrown (generated)" id="1596642939514-9">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="role_authorities" constraintName="FK8dv2uo3imjpm4dmk7pge9v2vo" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="role_entity" validate="true"/>
+    </changeSet>
+    <changeSet author="lbrown (generated)" id="1596642939514-10">
+        <addForeignKeyConstraint baseColumnNames="authority_id" baseTableName="role_authorities" constraintName="FKn8dif8lobyoe1juv6v5b1fag1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="authority_entity" validate="true"/>
+    </changeSet>
+    <changeSet author="lbrown (generated)" id="1596642939514-11">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_roles" constraintName="FKrhfovtciq1l558cw6udg0h0d3" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="role_entity" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

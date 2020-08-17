@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd"
+        logicalFilePath="path-ignored">
+
+    <property name="uid.type" value="uuid" dbms="postgresql" />
+    <property name="uid.type" value="uuid" dbms="h2" />
+
+    <property name="uid.gen" value="uuid_generate_v4()" dbms="postgresql" />
+    <property name="uid.gen" value="UUID()" dbms="h2"/>
+
+
+    <include file="changelog/0001-initial-db-setup.xml" relativeToChangelogFile="true" />
+    <include file="changelog/0002-acl-db-setup.xml" relativeToChangelogFile="true" />
+    <include file="changelog/0003-insert-auth-roles.xml" relativeToChangelogFile="true" />
+    <include file="changelog/0004-acl-starter-data.xml" relativeToChangelogFile="true" />
+
+</databaseChangeLog>

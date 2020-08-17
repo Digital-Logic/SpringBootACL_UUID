@@ -1,0 +1,55 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.0.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd"
+                   logicalFilePath="path-ignored">
+
+    <changeSet id="0003-insert-authorities" author="Larry">
+        <insert tableName="authority_entity">
+            <column
+                    name="id"
+                    valueComputed="${uid.gen}" />
+            <column name="name" value="ADMIN_USERS_AUTHORITY" />
+        </insert>
+
+        <insert tableName="authority_entity">
+            <column
+                    name="id"
+                    valueComputed="${uid.gen}" />
+            <column name="name" value="ADMIN_ROLES_AUTHORITY" />
+        </insert>
+    </changeSet>
+
+    <changeSet id="0003-insert-roles" author="Larry">
+        <insert tableName="role_entity">
+            <column name="id"
+                    valueComputed="${uid.gen}" />
+            <column name="name"
+                    value="USER_ROLE" />
+        </insert>
+
+        <insert tableName="role_entity">
+            <column name="id"
+                    valueComputed="${uid.gen}" />
+            <column name="name"
+                    value="ADMIN_ROLE" />
+        </insert>
+    </changeSet>
+
+    <changeSet id="0003-user-authority-linking-table" author="Larry">
+        <insert tableName="role_authorities">
+            <column name="role_id"
+                    valueComputed="(SELECT id FROM role_entity WHERE role_entity.name='ADMIN_ROLE')" />
+            <column name="authority_id"
+                    valueComputed="(SELECT id FROM authority_entity WHERE authority_entity.name='ADMIN_USERS_AUTHORITY')" />
+        </insert>
+        <insert tableName="role_authorities">
+            <column name="role_id"
+                    valueComputed="(SELECT id FROM role_entity WHERE role_entity.name='ADMIN_ROLE')" />
+            <column name="authority_id"
+                    valueComputed="(SELECT id FROM authority_entity WHERE authority_entity.name='ADMIN_ROLES_AUTHORITY')" />
+        </insert>
+    </changeSet>
+</databaseChangeLog>

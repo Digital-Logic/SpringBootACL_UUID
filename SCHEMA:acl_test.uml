@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>fddb0b55-fdea-4485-999d-c09ab522183a.SCHEMA:acl_test</OriginalElement>
+  <nodes>
+    <node x="437.0" y="0.0">fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.DATABASECHANGELOG</node>
+    <node x="54.375" y="919.0">fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.role_authorities</node>
+    <node x="321.125" y="919.0">fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.user_roles</node>
+    <node x="0.0" y="700.0">fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.authority</node>
+    <node x="100.0" y="366.0">fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.acl_entry</node>
+    <node x="40.0" y="0.0">fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.acl_class</node>
+    <node x="362.0" y="640.0">fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.user</node>
+    <node x="257.0" y="171.0">fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.acl_sid</node>
+    <node x="678.0" y="640.0">fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.DATABASECHANGELOGLOCK</node>
+    <node x="0.0" y="135.0">fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.acl_object_identity</node>
+    <node x="181.0" y="700.0">fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.role</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.user_roles" target="fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.role">
+      <point x="-39.25" y="-42.0" />
+      <point x="360.375" y="894.0" />
+      <point x="301.75" y="894.0" />
+      <point x="40.25" y="54.5" />
+    </edge>
+    <edge source="fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.acl_object_identity" target="fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.acl_class">
+      <point x="0.0" y="-90.5" />
+      <point x="0.0" y="42.5" />
+    </edge>
+    <edge source="fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.acl_entry" target="fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.acl_sid">
+      <point x="60.75" y="-114.5" />
+      <point x="282.25" y="341.0" />
+      <point x="324.5" y="341.0" />
+      <point x="0.0" y="54.5" />
+    </edge>
+    <edge source="fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.role_authorities" target="fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.role">
+      <point x="48.25" y="-42.0" />
+      <point x="199.125" y="894.0" />
+      <point x="221.25" y="894.0" />
+      <point x="-40.25" y="54.5" />
+    </edge>
+    <edge source="fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.role_authorities" target="fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.authority">
+      <point x="-48.25" y="-42.0" />
+      <point x="102.625" y="894.0" />
+      <point x="80.5" y="894.0" />
+      <point x="0.0" y="54.5" />
+    </edge>
+    <edge source="fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.acl_entry" target="fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.acl_object_identity">
+      <point x="-60.75" y="-114.5" />
+      <point x="160.75" y="341.0" />
+      <point x="118.5" y="341.0" />
+      <point x="0.0" y="90.5" />
+    </edge>
+    <edge source="fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.user_roles" target="fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.user">
+      <point x="39.25" y="-42.0" />
+      <point x="438.875" y="894.0" />
+      <point x="497.5" y="894.0" />
+      <point x="0.0" y="114.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.356304985337244" x="243.33513513513498" y="312.93621621621605" />
+  <SelectedNodes>
+    <node>fddb0b55-fdea-4485-999d-c09ab522183a.TABLE:acl_uuid.DATABASECHANGELOG</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

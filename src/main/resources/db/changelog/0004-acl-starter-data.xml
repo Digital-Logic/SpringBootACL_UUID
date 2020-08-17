@@ -1,0 +1,63 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.0.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd"
+                   logicalFilePath="path-ignored">
+
+    <changeSet id="0004-acl-class" author="Larry">
+        <insert tableName="acl_class">
+            <column name="class"
+                value="net.digitallogic.aclUidTest.persistence.entity.UserEntity" />
+        </insert>
+
+        <insert tableName="acl_class">
+            <column name="class"
+                    value="net.digitallogic.aclUidTest.persistence.entity.RoleEntity" />
+        </insert>
+
+        <insert tableName="acl_class">
+            <column name="class"
+                    value="net.digitallogic.aclUidTest.persistence.entity.AuthorityEntity" />
+        </insert>
+    </changeSet>
+
+    <changeSet id="0004-acl-sid" author="Larry">
+        <insert tableName="acl_sid">
+            <column name="sid"
+                    value="ADMIN_USERS_AUTHORITY" />
+            <column name="principal"
+                    valueBoolean="false" />
+        </insert>
+        <insert tableName="acl_sid">
+            <column name="sid"
+                    value="ADMIN_ROLES_AUTHORITY" />
+            <column name="principal"
+                    valueBoolean="false" />
+        </insert>
+    </changeSet>
+
+    <changeSet id="0004-acl-admin-authority" author="Larry">
+        <insert tableName="authority_entity">
+            <column name="id"
+                    valueComputed="${uid.gen}" />
+            <column name="name"
+                    value="ADMIN_ACL_AUTHORITY" />
+        </insert>
+
+        <insert tableName="acl_sid">
+            <column name="sid"
+                    value="ADMIN_ACL_AUTHORITY" />
+            <column name="principal"
+                    valueBoolean="false" />
+        </insert>
+
+        <insert tableName="role_authorities">
+            <column name="role_id"
+                    valueComputed="(SELECT id FROM role_entity WHERE role_entity.name='ADMIN_ROLE')" />
+            <column name="authority_id"
+                    valueComputed="(SELECT id FROM authority_entity WHERE authority_entity.name='ADMIN_ACL_AUTHORITY')" />
+        </insert>
+    </changeSet>
+</databaseChangeLog>

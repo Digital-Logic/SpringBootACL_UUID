@@ -1,0 +1,7 @@
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+
+    <logger name="net.digitallogic" level="INFO" />
+    <logger name="org.springframework" level="INFO" />
+    <logger name="org.springframework.security" level="DEBUG" />
+</configuration>
