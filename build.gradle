@@ -56,8 +56,7 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	testImplementation 'org.assertj:assertj-core:3.16.1'
 
-//	testRuntimeOnly 'com.h2database:h2'
-	implementation 'com.h2database:h2'
+	testRuntimeOnly 'com.h2database:h2'
 }
 
 processResources {
